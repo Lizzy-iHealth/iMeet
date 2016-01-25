@@ -7,7 +7,7 @@ Meeting = React.createClass({
   
   deleteThisMeeting() {
     //Meetings.remove(this.props.Meeting._id);
-    Meteor.call("removeMeeting", this.props.Meeting._id);
+    Meteor.call("removeMeeting", this.props.meeting._id);
   },
 
   

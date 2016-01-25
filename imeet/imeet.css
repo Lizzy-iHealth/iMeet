@@ -123,6 +123,11 @@ li.private {
   border-color: #ddd;
 }
 
+.dayview {
+  width: 200px;
+  height: 400px;
+  float: left;
+}
 
 @media (max-width: 600px) {
   li {

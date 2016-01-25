@@ -1,6 +1,8 @@
 // App component - represents the whole app
 App = React.createClass({
-
+  propTypes: {
+    startAt: React.PropTypes.object.isRequired
+  },
   // This mixin makes the getMeteorData method work
   mixins: [ReactMeteorData],
   
@@ -17,26 +19,20 @@ App = React.createClass({
   
   },
   
-  renderMeetings() {
-    return this.data.meetings.map((meeting) => {
-           
-      return <Meeting
-        key={meeting._id}
-        meeting={meeting}/>;
-    });
+  getDefaultProps: function () {
+    return { startAt: moment('2016-01-21') };
   },
- 
-  handleSubmit(event) {
-    event.preventDefault();
- 
-    // Find the text field via the React ref
-    var text = React.findDOMNode(this.refs.textInput).value.trim();
-  
- 
-    Meteor.call("addMeeting", text);
- 
-    // Clear form
-    React.findDOMNode(this.refs.textInput).value = "";
+
+  getWeekDays(){
+    return [0,1,2,3,4];
+  },
+
+  renderDays() {
+    return this.getWeekDays().map( (i) => {
+           
+      return <Day
+        startAt = {this.props.startAt.clone().add(i, 'day')}  />;
+    });
   },
 
   render() {
@@ -44,8 +40,6 @@ App = React.createClass({
       <div className="container">
         <header>
           <h1>My Calendar</h1>
-          
-
           <AccountsUIWrapper />
           
           {this.data.currentUser ?
@@ -60,7 +54,7 @@ App = React.createClass({
         </header>
  
         <ul>
-          {this.renderMeetings()}
+          {this.renderDays()}
         </ul>
       </div>
     );
