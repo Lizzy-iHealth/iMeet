@@ -18,7 +18,7 @@ body {
 }
 
 .container {
-  max-width: 600px;
+  max-width: 1000px;
   margin: 0 auto;
   min-height: 100%;
   background: white;
@@ -129,7 +129,7 @@ li.private {
   float: left;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 1000px) {
   li {
     padding: 12px 15px;
   }

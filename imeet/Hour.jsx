@@ -2,8 +2,11 @@ Hour = React.createClass({
   propTypes: {
     // This component gets the task to display through a React prop.
     // We can use propTypes to indicate it is required
-    startAt: React.PropTypes.object.isRequired,
-    status: React.PropTypes.object.isRequired
+    startAt: React.PropTypes.object.isRequired
+  },
+
+  getInitialState: function() {
+    return {status: HourStates.AVAILABLE};
   },
 
   deleteThisTask() {
@@ -37,6 +40,7 @@ Hour = React.createClass({
           onClick={this.createMeeting} />
 
         <span className="text">
+        {this.state.status.msg}
         </span>
       </div>
     );
