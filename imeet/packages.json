@@ -1,0 +1,7 @@
+{
+"react-dom" : "0.14.6",
+"moment-range" : "2.1.0",
+"moment" : "2.11.1",
+"lodash" : "3.10.1",
+"dayz":"0.5.4"  
+}
