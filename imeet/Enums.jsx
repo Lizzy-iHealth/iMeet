@@ -9,9 +9,7 @@ MeetingStates = new Enumeration('MeetingStates', {
 });
 
 HourStates = new Enumeration('HourStates', {
-  TANTATIVE:      { _id: 0, msg: "tentative" }, 
-  BOOKED: { _id: 1, msg: "booked" }, 
-  CANCELLED: { _id: 2, msg: "cancelled" },
+  BUSY:      { _id: 0, msg: "busy" }, 
   AVAILABLE: {_id: 3, msg: "available"}
 }, { 
   report: function() {

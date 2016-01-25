@@ -14,9 +14,10 @@ Hour = React.createClass({
     Meteor.call("removeTask", this.props.meeting._id);
   },
 
-  createMeeting(){
-
+  createMeeting: function(){
+    this.setState({status : HourStates.BUSY});
   },
+
 
   render() {
 
@@ -27,7 +28,7 @@ Hour = React.createClass({
     return (
       <div className={hourClassName}>
 
-      { this.props.status === "tentative" ? (
+      { this.state.status === HourStates.BUSY? (
         <button className="reject" onClick={this.deleteThisTask}>
           &times;
         </button>
@@ -35,7 +36,7 @@ Hour = React.createClass({
       }
  
         <input
-          type="hidden"
+          type="button"
           readOnly={true}
           onClick={this.createMeeting} />
 
