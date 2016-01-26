@@ -34,14 +34,21 @@ Hour = React.createClass({
     Meteor.call("acceptMeeting", this.data.meeting._id);
   },
 
-  createMeeting: function(){
+  createMeeting: function(text){
 
+    totalUserNumber = 2;
+
+    let numOfAttandants = totalUserNumber;
+    let statusId = (numOfAttandants===1? MeetingStates.BOOKED.id():MeetingStates.TANTATIVE.id());
     meetInfo = {
       text : "No Title",
       startAt : this.props.startAt.toDate().getTime(),
-      numOfAttandants: 2,
+      numOfAttandants: numOfAttandants,
       attandants:[this.data.currentUser],
+      statusId: statusId,
     };
+
+
     Meteor.call("addMeeting", meetInfo);
   },
 
@@ -51,18 +58,21 @@ Hour = React.createClass({
         <Meeting 
         key={meeting._id} 
         meeting={meeting}/>
+        {
+          //add button for tantative meeting:
+          MeetingStates.from(meeting.statusId).isBooked()?'':(
+            <div>
+          <button className="delete" onClick={this.deleteMeeting}>
+            &times;
+          </button>
 
-        <button className="delete" onClick={this.deleteMeeting}>
-          &times;
-        </button>
-
-        <button className="accept" onClick={this.acceptMeeting}>
-          &#10004;
-        </button>
+          <button className="accept" onClick={this.acceptMeeting}>
+            &#10004;
+          </button>
+          </div>)
+        }
         </div>
-        
-
-        )
+    )
     
   },
 

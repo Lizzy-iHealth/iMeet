@@ -39,6 +39,7 @@ Meteor.methods({
       username: Meteor.user().username,
       attandants: meetInfo.attandants,
       numOfAttandants: meetInfo.numOfAttandants,
+      statusId:meetInfo.statusId,
 
     });
   },
@@ -62,8 +63,15 @@ Meteor.methods({
     var meeting = meetings.findOne(meetingId);
 
     const userId = Meteor.userId();
+
     if( meeting.attandants.indexOf(userId) == -1){
-      meetings.update(meetingId, {$set:{attandants: meeting.attandants.push(userId)}});
+      newAttandants = meeting.attandants.push(userId);
+      if(newAttandants.length === meeting.numOfAttandants){
+
+          meetings.update(meetingId, {$set:{attandants: newAttandants, statusId: MeetingStates.BOOKED.id()}});
+      }else{
+          meetings.update(meetingId, {$set:{attandants: newAttandants}});
+      }
       console.log("accept");
     }
 

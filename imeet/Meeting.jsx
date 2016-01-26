@@ -10,24 +10,10 @@ Meeting = React.createClass({
     Meteor.call("removeMeeting", this.props.meeting._id);
   },
   
-  getInitialState: function() {
-    
-    return {status:MeetingStates.TANTATIVE};
-  },
-
-  componentWillReceiveProps: function(nextProps) {
-
-    var allAccepted = (nextProps.meeting.attandants.length === nextProps.meeting.numOfAttandants);
-    if(allAccepted){
-      this.setState({
-        status: MeetingStates.BOOKED
-      });
-    }
-  },
-  
   render(){
-    const meetingClassName = this.state.status.msg;
-    this.state.status.report();
+    const meetingClassName = MeetingStates.from(this.props.meeting.statusId).msg;
+    MeetingStates.from(this.props.meeting.statusId).report();
+    
     return (
       <div>
         <span className= {meetingClassName}>

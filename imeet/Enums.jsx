@@ -5,6 +5,10 @@ MeetingStates = new Enumeration('MeetingStates', {
 }, { 
   report: function() {
     console.log(this.msg);
+  },
+
+  isBooked: function(){
+  	return this._id===1;
   }
 });
 
