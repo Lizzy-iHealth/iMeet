@@ -6,18 +6,6 @@ Day = React.createClass({
     startAt: React.PropTypes.object.isRequired
   },
   // This mixin makes the getMeteorData method work
-  mixins: [ReactMeteorData],
-  
-  // Loads items from the meetings collection and puts them on this.data.meetings
-  getMeteorData() {
-
-    let query = {};
- 
-    return {
-      meetings: meetings.find(query, {sort: {start: 1}}).fetch(),
-      currentUser: Meteor.user()
-    };
-  },
 
   get24Hours(){
 
@@ -38,6 +26,7 @@ Day = React.createClass({
  
 
   render() {
+    console.log("DayRender")
     return (
       <div className="dayview">
         <div>

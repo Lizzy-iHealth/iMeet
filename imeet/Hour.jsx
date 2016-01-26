@@ -40,7 +40,7 @@ Hour = React.createClass({
 
   createMeeting: function(text){
 
-    totalUserNumber = 2;
+    totalUserNumber = 3;
 
     let numOfAttandants = totalUserNumber;
     let statusId = (numOfAttandants===1? MeetingStates.BOOKED.id():MeetingStates.TANTATIVE.id());
@@ -92,6 +92,7 @@ Hour = React.createClass({
   },
 
   render() {
+    console.log("HourRender");
     return   this.data.meeting ? this.renderMeeting(this.data.meeting): this.renderAvailable() ;
   },
 });
