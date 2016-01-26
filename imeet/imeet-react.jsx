@@ -39,7 +39,8 @@ Meteor.methods({
       createdAt: new Date(),
       owner: Meteor.userId(),
       username: Meteor.user().username,
-      attandants: [],
+      attandants: meetInfo.attandants,
+      numOfAttandants: meetInfo.numOfAttandants,
 
     });
   },

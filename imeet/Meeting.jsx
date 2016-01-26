@@ -14,6 +14,16 @@ Meeting = React.createClass({
     
     return {status:MeetingStates.TANTATIVE};
   },
+
+  componentWillReceiveProps: function(nextProps) {
+
+    var allAccepted = (nextProps.meeting.attandants.length === nextProps.meeting.numOfAttandants);
+    if(allAccepted){
+      this.setState({
+        status: MeetingStates.BOOKED
+      });
+    }
+  },
   
   render(){
     const meetingClassName = this.state.status.msg;

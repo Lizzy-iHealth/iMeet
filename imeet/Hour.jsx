@@ -35,7 +35,9 @@ Hour = React.createClass({
 
     meetInfo = {
       text : "No Title",
-      startAt : this.props.startAt.toDate().getTime()
+      startAt : this.props.startAt.toDate().getTime(),
+      numOfAttandants: 2,
+      attandants:[this.data.currentUser],
     };
     Meteor.call("addMeeting", meetInfo);
   },
