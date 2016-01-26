@@ -29,7 +29,6 @@ Meeting = React.createClass({
     const meetingClassName = this.state.status.msg;
     return (
       <div>
-
         <span className= {meetingClassName}>
           <strong>{this.props.meeting.username}</strong>: {this.props.meeting.text} : {moment(this.props.meeting.startAt).format("DD,hh")}
         </span>

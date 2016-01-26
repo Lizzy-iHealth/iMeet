@@ -25,10 +25,17 @@ Hour = React.createClass({
     return {status:HourStates.AVAILABLE};
   },
 
-  deleteThisTask() {
+  deleteMeeting() {
+    //Tasks.remove(this.props.task._id);
+    //Meteor.call("removeTask", this.props.meeting._id);
+    Meteor.call("removeMeeting", this.data.meeting._id);
+  },
+
+  acceptMeeting() {
     //Tasks.remove(this.props.task._id);
     //Meteor.call("removeTask", this.props.meeting._id);
     this.setState({status : HourStates.AVAILABLE});
+    Meteor.call("removeMeeting", this.data.meeting._id);
   },
 
   createMeeting: function(){
@@ -43,28 +50,29 @@ Hour = React.createClass({
   },
 
   renderMeeting(meeting){
-    return <Meeting
-        key={meeting._id}
-        meeting={meeting}/>;
+    return (
+        <div>
+        <Meeting 
+        key={meeting._id} 
+        meeting={meeting}/>
+
+        <button className="delete" onClick={this.deleteMeeting}>
+          &times;
+        </button>
+
+        <button className="delete" onClick={this.acceptMeeting}>
+          &#10004;
+        </button>
+        </div>
+        
+
+        )
     
   },
 
   renderAvailable(){
-
-  },
-
-  render() {
-
-    // Give tasks a different className according to different status
-    // so that we can style them nicely in CSS
-    const hourClassName = this.state.status.msg;
-
     return (
-      <div className={hourClassName}>
-
-      //{ this.state.status === HourStates.BUSY? this.renderMeeting(this.data.meeting):''}
-      { this.data.meeting ? this.renderMeeting(this.data.meeting):''}
-        
+        <div className = "available">
         <input
           type="button"
           readOnly={true}
@@ -73,7 +81,11 @@ Hour = React.createClass({
         <span className="text">
         {this.state.status.msg + this.props.startAt.format("DD,HH:MM:SS")}
         </span>
-      </div>
-    );
-  }
+        </div>
+      );
+  },
+
+  render() {
+    return   this.data.meeting ? this.renderMeeting(this.data.meeting): this.renderAvailable() ;
+  },
 });
