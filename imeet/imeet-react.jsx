@@ -65,12 +65,12 @@ Meteor.methods({
     const userId = Meteor.userId();
 
     if( meeting.attandants.indexOf(userId) == -1){
-      newAttandants = meeting.attandants.push(userId);
-      if(newAttandants.length === meeting.numOfAttandants){
+      meeting.attandants.push(userId);
+      if(meeting.attandants.length === meeting.numOfAttandants){
 
-          meetings.update(meetingId, {$set:{attandants: newAttandants, statusId: MeetingStates.BOOKED.id()}});
+          meetings.update(meetingId, {$set:{attandants: meeting.attandants, statusId: MeetingStates.BOOKED.id()}});
       }else{
-          meetings.update(meetingId, {$set:{attandants: newAttandants}});
+          meetings.update(meetingId, {$set:{attandants: meeting.attandants}});
       }
       console.log("accept");
     }
