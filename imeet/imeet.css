@@ -47,9 +47,13 @@ th, td {
 }
 
 .tentative{
-
+  background-color: yellow;
+  border-bottom: #eee solid 1px;
 }
-
+.booked{
+  background-color: red;
+  border-bottom: #eee solid 1px;
+}
 .busy{
   background-color: blue;
 }

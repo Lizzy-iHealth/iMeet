@@ -55,7 +55,7 @@ Hour = React.createClass({
 
     // Give tasks a different className according to different status
     // so that we can style them nicely in CSS
-    const hourClassName = this.state.status.msg
+    const hourClassName = this.state.status.msg;
 
     return (
       <div className={hourClassName}>

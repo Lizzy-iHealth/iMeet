@@ -9,13 +9,18 @@ Meeting = React.createClass({
     //Meetings.remove(this.props.Meeting._id);
     Meteor.call("removeMeeting", this.props.meeting._id);
   },
-
+  
+  getInitialState: function() {
+    
+    return {status:MeetingStates.TANTATIVE};
+  },
   
   render(){
+    const meetingClassName = this.state.status.msg;
     return (
       <div>
 
-        <span className="text">
+        <span className= {meetingClassName}>
           <strong>{this.props.meeting.username}</strong>: {this.props.meeting.text} : {moment(this.props.meeting.startAt).format("DD,hh")}
         </span>
       </div>
