@@ -44,7 +44,7 @@ Hour = React.createClass({
       text : "No Title",
       startAt : this.props.startAt.toDate().getTime(),
       numOfAttandants: numOfAttandants,
-      attandants:[this.data.currentUser],
+      attandants:[this.data.currentUser._id],
       statusId: statusId,
     };
 
