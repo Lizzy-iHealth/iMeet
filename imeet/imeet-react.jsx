@@ -18,9 +18,7 @@ if (Meteor.isClient) {
 if (Meteor.isServer) {
   // Only publish meetings that are public or belong to the current user
   Meteor.publish("meetings", function () {
-    return meetings.find(
-        { owner: this.userId }
-    );
+    return meetings.find();
   });
 
 }
@@ -48,7 +46,7 @@ Meteor.methods({
   removeMeeting(meetingId) {
   	const meeting = meetings.findOne(meetingId);
   	if (meeting.owner !== Meteor.userId()) {
-      // If the meeting is private, make sure only the owner can delete it
+
       throw new Meteor.Error("not-authorized");
     }
 
@@ -56,16 +54,17 @@ Meteor.methods({
   },
 
   acceptMeeting(meetingId) {
-
-    if (Meteor.userId()) {
-      // If the meeting is private, make sure only the owner can delete it
+    // Make sure the user is logged in before accepting a meeting
+    if (! Meteor.userId()) {
+      
       throw new Meteor.Error("not-authorized");
     }
     var meeting = meetings.findOne(meetingId);
 
     const userId = Meteor.userId();
     if( meeting.attandants.indexOf(userId) == -1){
-      meetings.update(meetingId, {attandants: meeting.attandants.push(userId)});
+      meetings.update(meetingId, {$set:{attandants: meeting.attandants.push(userId)}});
+      console.log("accept");
     }
 
   }

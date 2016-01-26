@@ -13,16 +13,12 @@ Hour = React.createClass({
 
     let query = {};
     let m = meetings.find({startAt: this.props.startAt.toDate().getTime()}).fetch();
- 
+
     return {
       meeting: m.count===0? null:m[0],
       currentUser: Meteor.user()
     };
 
-  },
-  getInitialState: function() {
-    
-    return {status:HourStates.AVAILABLE};
   },
 
   deleteMeeting() {
@@ -60,7 +56,7 @@ Hour = React.createClass({
           &times;
         </button>
 
-        <button className="delete" onClick={this.acceptMeeting}>
+        <button className="accept" onClick={this.acceptMeeting}>
           &#10004;
         </button>
         </div>
@@ -79,7 +75,7 @@ Hour = React.createClass({
           onClick={this.createMeeting} />
 
         <span className="text">
-        {this.state.status.msg + this.props.startAt.format("DD,HH:MM:SS")}
+        {this.props.startAt.format("DD,HH:MM:SS")}
         </span>
         </div>
       );

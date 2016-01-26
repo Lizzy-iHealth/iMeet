@@ -27,6 +27,7 @@ Meeting = React.createClass({
   
   render(){
     const meetingClassName = this.state.status.msg;
+    this.state.status.report();
     return (
       <div>
         <span className= {meetingClassName}>
