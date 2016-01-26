@@ -60,7 +60,7 @@ Hour = React.createClass({
         meeting={meeting}/>
         {
           //add button for tantative meeting:
-          MeetingStates.from(meeting.statusId).isBooked()?'':(
+          meeting.statusId === MeetingStates.BOOKED.id()?'':(
             <div>
           <button className="delete" onClick={this.deleteMeeting}>
             &times;
