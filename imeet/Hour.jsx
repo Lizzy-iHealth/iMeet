@@ -34,8 +34,8 @@ Hour = React.createClass({
   acceptMeeting() {
     //Tasks.remove(this.props.task._id);
     //Meteor.call("removeTask", this.props.meeting._id);
-    this.setState({status : HourStates.AVAILABLE});
-    Meteor.call("removeMeeting", this.data.meeting._id);
+
+    Meteor.call("acceptMeeting", this.data.meeting._id);
   },
 
   createMeeting: function(){

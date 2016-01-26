@@ -53,6 +53,21 @@ Meteor.methods({
     }
 
     meetings.remove(meetingId);
+  },
+
+  acceptMeeting(meetingId) {
+
+    if (Meteor.userId()) {
+      // If the meeting is private, make sure only the owner can delete it
+      throw new Meteor.Error("not-authorized");
+    }
+    var meeting = meetings.findOne(meetingId);
+
+    const userId = Meteor.userId();
+    if( meeting.attandants.indexOf(userId) == -1){
+      meetings.update(meetingId, {attandants: meeting.attandants.push(userId)});
+    }
+
   }
 
 
