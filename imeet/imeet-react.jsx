@@ -43,7 +43,18 @@ Meteor.methods({
 
     });
   },
- 
+  
+  rejectMeeting(meetingId) {
+    
+    // Make sure the user is logged in before accepting a meeting
+    if (! Meteor.userId()) {
+      
+      throw new Meteor.Error("not-authorized");
+    }
+    const meeting = meetings.findOne(meetingId);
+    meetings.remove(meetingId);
+  },
+
   removeMeeting(meetingId) {
   	const meeting = meetings.findOne(meetingId);
   	if (meeting.owner !== Meteor.userId()) {

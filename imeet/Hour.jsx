@@ -26,7 +26,11 @@ Hour = React.createClass({
     //Meteor.call("removeTask", this.props.meeting._id);
     Meteor.call("removeMeeting", this.data.meeting._id);
   },
-
+  rejectMeeting() {
+    //Tasks.remove(this.props.task._id);
+    //Meteor.call("removeTask", this.props.meeting._id);
+    Meteor.call("rejectMeeting", this.data.meeting._id);
+  },
   acceptMeeting() {
     //Tasks.remove(this.props.task._id);
     //Meteor.call("removeTask", this.props.meeting._id);
@@ -59,16 +63,12 @@ Hour = React.createClass({
         key={meeting._id} 
         meeting={meeting}/>
         {
-          //add button for tantative meeting:
+          //add buttons for tantative meeting:
           meeting.statusId === MeetingStates.BOOKED.id()?'':(
-            <div>
-          <button className="delete" onClick={this.deleteMeeting}>
-            &times;
-          </button>
-
-          <button className="accept" onClick={this.acceptMeeting}>
-            &#10004;
-          </button>
+          <div>
+          <button className="delete" onClick={this.rejectMeeting}>&times;</button>
+          { // accept button if not accepted yet
+            meeting.attandants.indexOf(this.data.currentUser._id) === -1 ? (<button className="accept" onClick={this.acceptMeeting}>&#10004;</button>) : ''}
           </div>)
         }
         </div>
@@ -79,14 +79,14 @@ Hour = React.createClass({
   renderAvailable(){
     return (
         <div className = "available">
-        <input
-          type="button"
-          readOnly={true}
-          onClick={this.createMeeting} />
+        
+          <button className="new" onClick={this.createMeeting}>
+            +
+          </button>
 
-        <span className="text">
-        {this.props.startAt.format("DD,HH:MM:SS")}
-        </span>
+          <span className="text">
+            {this.props.startAt.format("DD,HH:MM:SS")}
+          </span>
         </div>
       );
   },
