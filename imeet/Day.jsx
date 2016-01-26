@@ -31,6 +31,7 @@ Day = React.createClass({
     return this.get24Hours().map( (i) => {
            
       return <Hour
+        key = {i}
         status={"available"} startAt={this.props.startAt.clone().add(i, 'hour')} />;
     });
   },
@@ -39,7 +40,9 @@ Day = React.createClass({
   render() {
     return (
       <div className="dayview">
-        
+        <div>
+          {this.props.startAt.format("dddd (DD)")}
+        </div>
           {this.renderMeetings()}
         
       </div>

@@ -1,5 +1,6 @@
 meetings = new Mongo.Collection("meetings");
 
+
 if (Meteor.isClient) {
   // This code is executed on the client only
   Accounts.ui.config({
@@ -24,18 +25,22 @@ if (Meteor.isServer) {
 
 }
 
+
 Meteor.methods({
-  addMeeting(text) {
+  addMeeting(meetInfo) {
     // Make sure the user is logged in before inserting a meeting
     if (! Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
     }
  
     meetings.insert({
-      text: text,
+      text: meetInfo.text,
+      startAt: meetInfo.startAt,
       createdAt: new Date(),
       owner: Meteor.userId(),
       username: Meteor.user().username,
+      attandants: [],
+
     });
   },
  
@@ -48,6 +53,7 @@ Meteor.methods({
 
     meetings.remove(meetingId);
   }
+
 
 
 });

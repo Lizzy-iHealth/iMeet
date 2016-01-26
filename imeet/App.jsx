@@ -20,21 +20,24 @@ App = React.createClass({
   },
   
   getDefaultProps: function () {
-    return { startAt: moment('2016-01-21') };
+    today = moment();
+    firstSunday = today.startOf('week');
+    return { startAt: firstSunday };
   },
 
   getWeekDays(){
-    return [0,1,2,3,4];
+    return [0,1,2,3,4,5,6];
   },
 
   renderDays() {
     return this.getWeekDays().map( (i) => {
            
       return <Day
+        key = {i}
         startAt = {this.props.startAt.clone().add(i, 'day')}  />;
     });
   },
-
+  
   render() {
     return (
       <div className="container">
