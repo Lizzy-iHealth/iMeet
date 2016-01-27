@@ -2,8 +2,7 @@
 
 FrameUnit = React.createClass({
   propTypes: {
-    // This component gets the Meeting to display through a React prop.
-    // We can use propTypes to indicate it is required
+    // This component display a time label.
     startAt: React.PropTypes.object.isRequired,
   },
   render(){
@@ -15,18 +14,13 @@ FrameUnit = React.createClass({
       </div>
     );
   },
-
-
-
 });
 
 TimeFrame = React.createClass({
   propTypes: {
-    // This component gets the task to display through a React prop.
-    // We can use propTypes to indicate it is required
+    // This component display the time axis of the calendar, containing 24 FrameUnits, each for an hour
     startAt: React.PropTypes.object.isRequired
   },
-  // This mixin makes the getMeteorData method work
 
   get24Hours(){
 
@@ -47,14 +41,13 @@ TimeFrame = React.createClass({
  
 
   render() {
-    console.log("DayRender")
+    //console.log("TimeAxis Render")
     return (
       <div className="dayview">
         <div>
           {this.props.startAt.format("YYYY/MMM")}
         </div>
-          {this.renderFrameUnits()}
-        
+          {this.renderFrameUnits()}    
       </div>
     );
   }

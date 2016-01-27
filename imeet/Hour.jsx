@@ -1,12 +1,13 @@
 Hour = React.createClass({
   propTypes: {
-    // This component gets the task to display through a React prop.
-    // We can use propTypes to indicate it is required
+    // This component gets each hour to display through a React prop.
     startAt: React.PropTypes.object.isRequired,
-    currentUser: React.PropTypes.object.isRequired
+    currentUser: React.PropTypes.object.isRequired,
+    meeting: React.PropTypes.object
   },
 
   getInitialState() {
+    //Display or hide a form for user to create a meeting
     return {
       displayPopup: false
     }
@@ -69,7 +70,6 @@ Hour = React.createClass({
       numOfAttandants: numOfAttandants,
       attandants:[this.props.currentUser._id],
       statusId: statusId,
-      createAt : (new Date()).getTime(),
     };
 
 

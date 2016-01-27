@@ -1,7 +1,6 @@
 Unit = React.createClass({
   propTypes: {
-    // This component gets the task to display through a React prop.
-    // We can use propTypes to indicate it is required
+    // This component is wrapper component for Hour to reduce unnecessary rendering caused by data change (eg: attandants added to meeting but still tantative)
     startAt: React.PropTypes.object.isRequired
 
   },
@@ -22,7 +21,7 @@ Unit = React.createClass({
   },
 
   render() {
-    console.log("UnitRender");
+    //console.log("UnitRender");
     return   <Hour
         key = {this.props.key}
         startAt={this.props.startAt}
