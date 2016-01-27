@@ -1,8 +1,7 @@
 // Day component - represents the whole day
 Day = React.createClass({
   propTypes: {
-    // This component gets the task to display through a React prop.
-    // We can use propTypes to indicate it is required
+    // This component render a day label and 24 Unit components
     startAt: React.PropTypes.object.isRequired
   },
   // This mixin makes the getMeteorData method work
@@ -26,7 +25,7 @@ Day = React.createClass({
  
 
   render() {
-    console.log("DayRender")
+    //console.log("DayRender")
     return (
       <div className="dayview">
         <div>
