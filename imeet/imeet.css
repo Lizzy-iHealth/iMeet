@@ -40,7 +40,10 @@ th, td {
     text-align: left;
     padding: 8px;
 }
-
+.noUser{
+  background-color: gray;
+  border-bottom: #eee solid 1px;
+}
 .available{
 	background-color: green;
   border-bottom: #eee solid 1px;

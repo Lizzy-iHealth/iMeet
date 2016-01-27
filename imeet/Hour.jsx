@@ -97,6 +97,13 @@ Hour = React.createClass({
     
   },
 
+  renderNoUser(){
+    return (
+      <div className = "noUser">
+      login to use
+      </div>
+      )
+  },
 
   renderAvailable(){
     return this.state.displayPopup? (
@@ -122,6 +129,6 @@ Hour = React.createClass({
 
   render() {
     console.log("HourRender");
-    return   this.props.meeting ? this.renderMeeting(this.props.meeting): this.renderAvailable() ;
+    return   this.props.currentUser? (this.props.meeting ? this.renderMeeting(this.props.meeting): this.renderAvailable()) : this.renderNoUser() ;
   },
 });
