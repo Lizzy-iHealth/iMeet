@@ -18,9 +18,9 @@ Day = React.createClass({
   renderMeetings() {
     return this.get24Hours().map( (i) => {
            
-      return <Hour
+      return <Unit
         key = {i}
-        status={"available"} startAt={this.props.startAt.clone().add(i, 'hour')} />;
+        startAt={this.props.startAt.clone().add(i, 'hour')} />;
     });
   },
  
