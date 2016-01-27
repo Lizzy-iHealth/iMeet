@@ -13,24 +13,22 @@ Hour = React.createClass({
   },
 
   deleteMeeting() {
-    //Tasks.remove(this.props.task._id);
-    //Meteor.call("removeTask", this.props.meeting._id);
+
     Meteor.call("removeMeeting", this.props.meeting._id);
   },
+
   rejectMeeting() {
-    //Tasks.remove(this.props.task._id);
-    //Meteor.call("removeTask", this.props.meeting._id);
+
     Meteor.call("rejectMeeting", this.props.meeting._id);
   },
+
   acceptMeeting() {
-    //Tasks.remove(this.props.task._id);
-    //Meteor.call("removeTask", this.props.meeting._id);
 
     Meteor.call("acceptMeeting", this.props.meeting._id);
   },
 
   shouldComponentUpdate: function(nextProps, nextState) {
-    if (nextState.displayPopup || nextProps.meeting!==this.props.meeting) return true;
+    if (nextState.displayPopup !=this.state.displayPopup || nextProps.meeting!==this.props.meeting) return true;
 
     if (nextProps.meeting ===null) return false;
     if (!this.props.meeting) return true;
@@ -71,6 +69,7 @@ Hour = React.createClass({
       numOfAttandants: numOfAttandants,
       attandants:[this.props.currentUser._id],
       statusId: statusId,
+      createAt : (new Date()).getTime(),
     };
 
 

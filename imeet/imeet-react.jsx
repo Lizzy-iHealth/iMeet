@@ -34,7 +34,7 @@ Meteor.methods({
     meetings.insert({
       text: meetInfo.text,
       startAt: meetInfo.startAt,
-      createdAt: new Date(),
+      //createdAt: meetInfo.createdAt,
       owner: Meteor.userId(),
       username: Meteor.user().username,
       attandants: meetInfo.attandants,
@@ -43,10 +43,10 @@ Meteor.methods({
 
     });
   },
-  
+
   rejectMeeting(meetingId) {
     
-    // Make sure the user is logged in before accepting a meeting
+    // Make sure the user is logged in before rejecting a meeting
     if (! Meteor.userId()) {
       
       throw new Meteor.Error("not-authorized");
@@ -55,8 +55,10 @@ Meteor.methods({
     meetings.remove(meetingId);
   },
 
+  //TODO: for owner to remove booked meeting
   removeMeeting(meetingId) {
   	const meeting = meetings.findOne(meetingId);
+    // Make sure only owner can remove booked meeting
   	if (meeting.owner !== Meteor.userId()) {
 
       throw new Meteor.Error("not-authorized");
@@ -83,7 +85,7 @@ Meteor.methods({
       }else{
           meetings.update(meetingId, {$set:{attandants: meeting.attandants}});
       }
-      console.log("accept");
+      //console.log("accept");
     }
 
   }
