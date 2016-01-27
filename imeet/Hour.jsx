@@ -36,14 +36,32 @@ Hour = React.createClass({
     if (!this.props.meeting) return true;
     return MeetingStates.from(nextProps.meeting.statusId) !== MeetingStates.from(this.props.meeting.statusId);
   },
-  createMeeting: function(text){
+
+  displayPopup:function(){
+    this.setState({
+      displayPopup : true
+    });
+  },
+
+  createMeeting: function(event){
+
+
+    event.preventDefault();
+ 
+    // Find the text field via the React ref
+    var text = React.findDOMNode(this.refs.textInput).value.trim();
+ 
+ 
+    // Clear form
+    React.findDOMNode(this.refs.textInput).value = "";
+
 
     totalUserNumber = 3;
 
     let numOfAttandants = totalUserNumber;
     let statusId = (numOfAttandants===1? MeetingStates.BOOKED.id():MeetingStates.TANTATIVE.id());
     meetInfo = {
-      text : "No Title",
+      text : text,
       startAt : this.props.startAt.toDate().getTime(),
       numOfAttandants: numOfAttandants,
       attandants:[this.props.currentUser._id],
@@ -74,18 +92,24 @@ Hour = React.createClass({
     
   },
 
+
   renderAvailable(){
-    return (
+    return this.state.displayPopup? (
+      <form className="new-task" onSubmit={this.createMeeting} >
+              <input
+                type="text"
+                ref="textInput"
+                placeholder="Type to add new meeting" />
+      </form> 
+      ):(
         <div className = "available">
-          <button className="new" onClick={this.createMeeting}>
+          <button className="new" onClick={this.displayPopup}>
             +
           </button>
 
           <span className="text">
             {this.props.startAt.format("DD,HH:MM:SS")}
           </span>
-
-          <Popup display={this.state.displayPopup}/>
             
         </div>
     )
