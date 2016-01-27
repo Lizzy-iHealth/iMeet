@@ -42,6 +42,11 @@ Hour = React.createClass({
       displayPopup : true
     });
   },
+  hidePopup:function(){
+    this.setState({
+      displayPopup : false
+    });
+  },
 
   createMeeting: function(event){
 
@@ -54,7 +59,7 @@ Hour = React.createClass({
  
     // Clear form
     React.findDOMNode(this.refs.textInput).value = "";
-
+    this.hidePopup();
 
     totalUserNumber = 3;
 
