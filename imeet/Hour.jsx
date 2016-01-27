@@ -119,10 +119,6 @@ Hour = React.createClass({
           <button className="new" onClick={this.displayPopup}>
             +
           </button>
-
-          <span className="text">
-            {this.props.startAt.format("DD,HH:MM:SS")}
-          </span>
             
         </div>
     )

@@ -17,7 +17,7 @@ Meeting = React.createClass({
     return (
       <div>
         <span >
-          <strong>{this.props.meeting.username}</strong>: {this.props.meeting.text} : {moment(this.props.meeting.startAt).format("DD,hh")}
+          {this.props.meeting.text} 
         </span>
       </div>
     );
