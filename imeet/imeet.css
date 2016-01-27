@@ -41,23 +41,43 @@ th, td {
     padding: 8px;
 }
 .noUser{
+  display:block;
+  width:100%;
+  height:30px;
   background-color: gray;
   border-bottom: #eee solid 1px;
+  overflow:scroll;
 }
 .available{
+  display:block;
+  width:100%;
+  height:30px;
+  overflow:scroll;
 	background-color: green;
   border-bottom: #eee solid 1px;
 }
 
 .tentative{
+   display:block;
+  width:100%;
+  height:30px;
+  overflow:scroll;
   background-color: yellow;
   border-bottom: #eee solid 1px;
 }
 .booked{
+   display:block;
+  width:100%;
+  height:30px;
+  overflow:scroll;
   background-color: red;
   border-bottom: #eee solid 1px;
 }
 .busy{
+   display:block;
+  width:100%;
+  height:30px;
+  overflow:scroll;
   background-color: blue;
 }
 #cal { 

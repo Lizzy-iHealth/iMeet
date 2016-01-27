@@ -14,6 +14,12 @@ App = React.createClass({
     return [0,1,2,3,4,5,6];
   },
 
+  renderTimeFrame() {
+           
+    return <TimeFrame startAt={this.props.startAt}  />;
+    
+  },
+
   renderDays() {
     return this.getWeekDays().map( (i) => {
            
@@ -34,7 +40,9 @@ App = React.createClass({
         </header>
  
         <div>
+          {this.renderTimeFrame()}
           {this.renderDays()}
+          
         </div>
       </div>
     );

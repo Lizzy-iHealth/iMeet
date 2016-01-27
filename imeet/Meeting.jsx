@@ -11,12 +11,12 @@ Meeting = React.createClass({
   },
   
   render(){
-    const meetingClassName = MeetingStates.from(this.props.meeting.statusId).msg;
+    //const meetingClassName = MeetingStates.from(this.props.meeting.statusId).msg;
     //MeetingStates.from(this.props.meeting.statusId).report();
     
     return (
       <div>
-        <span className= {meetingClassName}>
+        <span >
           <strong>{this.props.meeting.username}</strong>: {this.props.meeting.text} : {moment(this.props.meeting.startAt).format("DD,hh")}
         </span>
       </div>

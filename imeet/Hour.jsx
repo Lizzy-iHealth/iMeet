@@ -78,8 +78,9 @@ Hour = React.createClass({
   },
 
   renderMeeting(meeting){
+    const meetingStatusName = MeetingStates.from(meeting.statusId).msg;
     return (
-        <div>
+        <div className = {meetingStatusName}>
         <Meeting 
         key={meeting._id} 
         meeting={meeting}/>
