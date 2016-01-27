@@ -6,6 +6,12 @@ Hour = React.createClass({
     currentUser: React.PropTypes.object.isRequired
   },
 
+  getInitialState() {
+    return {
+      displayPopup: false
+    }
+  },
+
   deleteMeeting() {
     //Tasks.remove(this.props.task._id);
     //Meteor.call("removeTask", this.props.meeting._id);
@@ -24,6 +30,8 @@ Hour = React.createClass({
   },
 
   shouldComponentUpdate: function(nextProps, nextState) {
+    if (nextState.displayPopup || nextProps.meeting!==this.props.meeting) return true;
+
     if (nextProps.meeting ===null) return false;
     if (!this.props.meeting) return true;
     return MeetingStates.from(nextProps.meeting.statusId) !== MeetingStates.from(this.props.meeting.statusId);
@@ -69,7 +77,6 @@ Hour = React.createClass({
   renderAvailable(){
     return (
         <div className = "available">
-        
           <button className="new" onClick={this.createMeeting}>
             +
           </button>
@@ -77,8 +84,11 @@ Hour = React.createClass({
           <span className="text">
             {this.props.startAt.format("DD,HH:MM:SS")}
           </span>
+
+          <Popup display={this.state.displayPopup}/>
+            
         </div>
-      );
+    )
   },
 
   render() {
