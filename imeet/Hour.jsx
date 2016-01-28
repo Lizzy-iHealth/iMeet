@@ -33,12 +33,16 @@ Hour = React.createClass({
     Meteor.call("acceptMeeting", this.props.meeting._id);
   },
 
-  shouldComponentUpdate: function(nextProps, nextState) {
-    if (nextState.displayPopup !=this.state.displayPopup || nextProps.meeting!==this.props.meeting) return true;
+  meetingStatusUnchangedAndIAmIn: function(nextProps){
+    return nextProps.meeting && this.props.meeting
+        && MeetingStates.from(nextProps.meeting.statusId) === MeetingStates.from(this.props.meeting.statusId)
+        && this.props.meeting.attandants.indexOf(this.props.currentUser._id) != -1  ;
+  },
 
-    if (nextProps.meeting ===null) return false;
-    if (!this.props.meeting) return true;
-    return MeetingStates.from(nextProps.meeting.statusId) !== MeetingStates.from(this.props.meeting.statusId);
+  shouldComponentUpdate: function(nextProps, nextState) {
+    //don't render if meeting status unchanged
+    if (this.meetingStatusUnchangedAndIAmIn(nextProps)) return false;
+    else return true;
   },
 
   displayPopup:function(){
