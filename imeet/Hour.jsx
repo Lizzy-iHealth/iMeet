@@ -5,7 +5,12 @@ Hour = React.createClass({
     currentUser: React.PropTypes.object.isRequired,
     meeting: React.PropTypes.object
   },
-
+ 
+  getDefaultProps: function() {
+    return {
+      meeting:null
+    };
+  }
   getInitialState() {
     //Display or hide a form for user to create a meeting
     return {
@@ -42,11 +47,15 @@ Hour = React.createClass({
     });
     console.log("popup");
   },
+
   hidePopup:function(){
     this.setState({
       displayPopup : false
     });
   },
+
+//TODO: cancel popup form if click other places without hit enter
+  cancelPopup:function(){},
 
   createMeeting: function(event){
 
