@@ -10,7 +10,7 @@ Hour = React.createClass({
     return {
       meeting:null
     };
-  }
+  },
   getInitialState() {
     //Display or hide a form for user to create a meeting
     return {
@@ -63,11 +63,11 @@ Hour = React.createClass({
     event.preventDefault();
  
     // Find the text field via the React ref
-    var text = React.findDOMNode(this.refs.textInput).value.trim();
+    var text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
  
  
     // Clear form
-    React.findDOMNode(this.refs.textInput).value = "";
+    ReactDOM.findDOMNode(this.refs.textInput).value = "";
     this.hidePopup();
 
     totalUserNumber = 3;
@@ -116,6 +116,7 @@ Hour = React.createClass({
   },
 
   renderAvailable(){
+    console.log("renderAvailable");
     return this.state.displayPopup? (
       <form className="new-task" onSubmit={this.createMeeting} >
               <input

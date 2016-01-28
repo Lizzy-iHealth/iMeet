@@ -13,7 +13,7 @@ Meeting = React.createClass({
   render(){
     //const meetingClassName = MeetingStates.from(this.props.meeting.statusId).msg;
     //MeetingStates.from(this.props.meeting.statusId).report();
-    
+    console.log("renderMeeing")
     return (
       <div>
         <span >
