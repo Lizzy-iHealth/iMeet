@@ -2,7 +2,7 @@ Hour = React.createClass({
   propTypes: {
     // This component gets each hour to display through a React prop.
     startAt: React.PropTypes.object.isRequired,
-    currentUser: React.PropTypes.object.isRequired,
+    currentUser: React.PropTypes.object,
     meeting: React.PropTypes.object
   },
  
@@ -34,7 +34,7 @@ Hour = React.createClass({
   },
 
   meetingStatusUnchangedAndIAmIn: function(nextProps){
-    return nextProps.meeting && this.props.meeting
+    return nextProps.meeting && this.props.meeting && this.props.currentUser && nextProps.currentUser
         && MeetingStates.from(nextProps.meeting.statusId) === MeetingStates.from(this.props.meeting.statusId)
         && this.props.meeting.attandants.indexOf(this.props.currentUser._id) != -1  ;
   },
@@ -121,7 +121,7 @@ Hour = React.createClass({
   },
 
   renderAvailable(){
-    console.log("renderAvailable");
+    //console.log("renderAvailable");
     return this.state.displayPopup? (
       <form className="new-task" onSubmit={this.createMeeting} >
               <input
