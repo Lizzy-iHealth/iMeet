@@ -1,5 +1,14 @@
 meetings = new Mongo.Collection("meetings");
 
+Meeting.schema = new SimpleSchema({
+      text: { type: String },
+      startAt: { type: Number },
+      attandants: {type: [String]},
+      numOfAttandants: {type: Number},
+      statusId: {type: Number}
+    });
+
+meetings.attachSchema(Meeting.schema);
 
 if (Meteor.isClient) {
   // This code is executed on the client only
@@ -23,14 +32,14 @@ if (Meteor.isServer) {
 
 }
 
-
 Meteor.methods({
   addMeeting(meetInfo) {
     // Make sure the user is logged in before inserting a meeting
     if (! Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
     }
- 
+
+
     meetings.insert({
       text: meetInfo.text,
       startAt: meetInfo.startAt,
@@ -51,6 +60,8 @@ Meteor.methods({
       
       throw new Meteor.Error("not-authorized");
     }
+
+
     const meeting = meetings.findOne(meetingId);
     meetings.remove(meetingId);
   },
@@ -73,6 +84,8 @@ Meteor.methods({
       
       throw new Meteor.Error("not-authorized");
     }
+
+
     var meeting = meetings.findOne(meetingId);
 
     const userId = Meteor.userId();

@@ -1,5 +1,5 @@
 MeetingStates = new Enumeration('MeetingStates', {
-  TANTATIVE:      { _id: 0, msg: "tentative" }, 
+  TANTATIVE: { _id: 3, msg: "tentative" }, 
   BOOKED: { _id: 1, msg: "booked" }, 
   CANCELLED: { _id: 2, msg: "cancelled" }
 }, { 

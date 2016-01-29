@@ -26,3 +26,6 @@ accounts-password
 react
 momentjs:moment
 sveinburne:enumerationjs
+aldeed:simple-schema
+aldeed:autoform
+aldeed:collection2

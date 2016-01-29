@@ -77,7 +77,8 @@ Hour = React.createClass({
     totalUserNumber = 3;
 
     let numOfAttandants = totalUserNumber;
-    let statusId = (numOfAttandants===1? MeetingStates.BOOKED.id():MeetingStates.TANTATIVE.id());
+    let statusId = numOfAttandants===1? MeetingStates.BOOKED.id():MeetingStates.TANTATIVE.id();
+    console.log(statusId);
     meetInfo = {
       text : text,
       startAt : this.props.startAt.toDate().getTime(),
