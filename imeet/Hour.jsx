@@ -40,6 +40,7 @@ Hour = React.createClass({
     this.setState({
       displayPopup : true
     });
+    console.log("popup");
   },
   hidePopup:function(){
     this.setState({

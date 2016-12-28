@@ -1,10 +1,8 @@
 // App component - represents the whole app
 App = React.createClass({
-  propTypes: {
-    startAt: React.PropTypes.object.isRequired
-  },
-  
-  getDefaultProps: function () {
+
+
+  getInitialState() {
     today = moment();
     firstSunday = today.startOf('week');
     return { startAt: firstSunday };
@@ -16,7 +14,7 @@ App = React.createClass({
 
   renderTimeFrame() {
            
-    return <TimeFrame startAt={this.props.startAt}  />;
+    return <TimeFrame startAt={this.state.startAt}  />;
     
   },
 
@@ -25,7 +23,7 @@ App = React.createClass({
            
       return <Day
         key = {i}
-        startAt = {this.props.startAt.clone().add(i, 'day')}  />;
+        startAt = {this.state.startAt.clone().add(i, 'day')}  />;
     });
   },
   
